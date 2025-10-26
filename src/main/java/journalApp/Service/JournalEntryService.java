@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public class JournalEntryService {
 
 
     public void saveEntry(JournalEntry journalEntry){
+        journalEntry.setDate(LocalDate.now());
         journalEntryRepository.save(journalEntry);
     }
 
