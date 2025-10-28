@@ -1,6 +1,7 @@
 package journalApp.Service;
 
 import journalApp.Entity.JournalEntry;
+import journalApp.Entity.UserEntry;
 import journalApp.Repository.JournalEntryRepository;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
@@ -21,8 +22,12 @@ public class JournalEntryService {
 
 
     public void saveEntry(JournalEntry journalEntry){
-        journalEntry.setDate(LocalDate.now());
-        journalEntryRepository.save(journalEntry);
+        try{
+            journalEntry.setDate(LocalDate.now());
+            journalEntryRepository.save(journalEntry);
+        }catch (Exception e){
+            log.error("Exception",e);
+        }
     }
 
     public List<JournalEntry> getAll(){
