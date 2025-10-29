@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,12 +25,18 @@ public class JournalEntryService {
     private UserEntryService userEntryService;
 
 
+    @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName){
-            UserEntry user = userEntryService.findByUserName(userName);
+        try{UserEntry user = userEntryService.findByUserName(userName);
             journalEntry.setDate(LocalDate.now());
             JournalEntry saved = journalEntryRepository.save(journalEntry);
             user.getJournalEntries().add(saved);
+            user.setUserName(null);
             userEntryService.saveEntry(user);
+        }catch (Exception e){
+            System.out.println(e);
+            throw new RuntimeException("An occurred while performing transactional");
+        }
     }
     public void saveEntry(JournalEntry journalEntry){
         journalEntry.setDate(LocalDate.now());
