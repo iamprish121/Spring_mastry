@@ -28,10 +28,15 @@ public class UserEntryService {
      userEntryRepository.save(userEntry);
     }
 
-    public void saveNewUser(UserEntry userEntry){
-        userEntry.setPassword(passwordEncoder.encode(userEntry.getPassword()));
-        userEntry.setRoles(Arrays.asList("USER"));
-        userEntryRepository.save(userEntry);
+    public boolean saveNewUser(UserEntry userEntry){
+        try{
+            userEntry.setPassword(passwordEncoder.encode(userEntry.getPassword()));
+            userEntry.setRoles(Arrays.asList("USER"));
+            userEntryRepository.save(userEntry);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public void saveAdmin(UserEntry userEntry){
