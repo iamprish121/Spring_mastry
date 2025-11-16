@@ -2,6 +2,7 @@ package journalApp.Service;
 
 import journalApp.Entity.UserEntry;
 import journalApp.Repository.UserEntryRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class UserEntryService {
-    private static final Logger log = LoggerFactory.getLogger(UserEntryService.class);
+//    private static final Logger log = LoggerFactory.getLogger(UserEntryService.class);
 
     @Autowired
     private UserEntryRepository userEntryRepository;
@@ -35,6 +37,11 @@ public class UserEntryService {
             userEntryRepository.save(userEntry);
             return true;
         }catch (Exception e){
+            log.trace("trace");
+            log.debug("debug");
+            log.info("info");
+            log.warn("warn");
+            log.error("error occurred for");
             return false;
         }
     }

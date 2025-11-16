@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -17,14 +16,10 @@ import java.util.Optional;
 @Component
 public class JournalEntryService {
     private static final Logger log = LoggerFactory.getLogger(JournalEntryService.class);
-
     @Autowired
     private JournalEntryRepository journalEntryRepository;
-
     @Autowired
     private UserEntryService userEntryService;
-
-
     @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName){
         try{
