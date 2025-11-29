@@ -1,10 +1,7 @@
 package journalApp.Service;
 
 import journalApp.Api.WeatherResponse;
-import journalApp.Entity.UserEntry;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,23 +22,4 @@ public class WeatherService {
         WeatherResponse body = response.getBody();
         return body;
     }
-
-//    public WeatherResponse  postWeather(String city){
-//        String finalApi = API.replace("CITY",city).replace("API_KEY",api_key);
-//
-//        String requestBody = "{\n" +
-//                "    \"userName\":\"test\",\n" +
-//                "    \"password\":\"test\"\n" +
-//                "}";
-//        UserEntry user = UserEntry.builder().userName("username").password("password").build();
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.set("key","value");
-////        HttpEntity<String> httpEntity = new HttpEntity<>(requestBody);
-////        HttpEntity<UserEntry>  httpEntity = new HttpEntity<>(user);
-//        HttpEntity<UserEntry> httpEntity = new HttpEntity<>(user,httpHeaders);
-//
-//        ResponseEntity<WeatherResponse> response = restTemplate.exchange(finalApi, HttpMethod.POST, httpEntity, WeatherResponse.class);
-//        WeatherResponse body = response.getBody();
-//        return body;
-//    }
 }
